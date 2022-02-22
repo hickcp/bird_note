@@ -15,7 +15,7 @@ public class Birds {
     private String birdName;
 
     @Column(name = "SeeDate", nullable = false)
-    private LocalDate seeDate;
+    private String seeDate;
 
     @Column(name = "SeeHour", nullable = false)
     private Integer seeHour;
@@ -23,7 +23,7 @@ public class Birds {
     @Column(name = "Behavior", nullable = false)
     private String behavior;
 
-    @Column(name = "Comments", nullable = true)
+    @Column(name = "Comments")
     private String comments;
     public Long getId() {
         return id;
@@ -41,11 +41,11 @@ public class Birds {
         this.birdName = birdName;
     }
 
-    public LocalDate getSeeDate() {
+    public String getSeeDate() {
         return seeDate;
     }
 
-    public void setSeeDate(LocalDate seeDate) {
+    public void setSeeDate(String seeDate) {
         this.seeDate = seeDate;
     }
 
