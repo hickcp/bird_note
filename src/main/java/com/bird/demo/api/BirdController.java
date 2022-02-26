@@ -8,9 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -30,10 +28,15 @@ public class BirdController {
     }
 
     @PostMapping("/write")
-    public ResponseEntity<Birds> salvar(@Validated @RequestBody Birds birds, HttpServletResponse response){
+    public ResponseEntity<Birds> save(@Validated @RequestBody Birds birds, HttpServletResponse response){
 
         Birds b = birdsService.saveBirds(birds);
         return ResponseEntity.status(HttpStatus.CREATED).body(b);
     }
+    @GetMapping("/load/{birdName}")
+    public ResponseEntity<Birds> search(@PathVariable(name = "birdName")String birdName){
+        return ResponseEntity.ok(birdsService.getBirds(birdName));
+    }
+
 
 }

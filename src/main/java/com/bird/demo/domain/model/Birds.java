@@ -18,7 +18,7 @@ public class Birds {
     private String seeDate;
 
     @Column(name = "SeeHour", nullable = false)
-    private Integer seeHour;
+    private String seeHour;
 
     @Column(name = "Behavior", nullable = false)
     private String behavior;
@@ -49,11 +49,11 @@ public class Birds {
         this.seeDate = seeDate;
     }
 
-    public Integer getSeeHour() {
+    public String getSeeHour() {
         return seeHour;
     }
 
-    public void setSeeHour(Integer seeHour) {
+    public void setSeeHour(String seeHour) {
         this.seeHour = seeHour;
     }
 
