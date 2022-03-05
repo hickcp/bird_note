@@ -38,5 +38,9 @@ public class BirdController {
         return ResponseEntity.ok(birdsService.getBirds(birdName));
     }
 
+    @GetMapping("/like/{birdName}")
+    public ResponseEntity<Birds> searchLike(@PathVariable(name = "birdName")String birdName){
+        return ResponseEntity.ok(birdsService.getLikeBirds(birdName));
+    }
 
 }

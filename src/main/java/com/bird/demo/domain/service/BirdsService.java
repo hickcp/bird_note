@@ -20,7 +20,12 @@ public class BirdsService {
         return birdRepository.save(b);
     }
 
+
     public Birds getBirds(String birdName){
         return birdRepository.findByBirdName(birdName).get();
+    }
+
+    public Birds getLikeBirds(String birdName){
+        return birdRepository.findByBirdNameLike(birdName).get();
     }
 }
