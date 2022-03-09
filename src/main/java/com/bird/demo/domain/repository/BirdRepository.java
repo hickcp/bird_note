@@ -17,5 +17,5 @@ public interface BirdRepository extends JpaRepository<Birds, Long> {
 
 
     @Query("FROM Birds c WHERE c.birdName LIKE %?1%")
-    Optional<Birds> findByBirdNameLike(String birdName);
+    List<Birds> findByBirdNameLike(String birdName);
 }

@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Controller
 @RequestMapping(path = "/bird")
@@ -39,7 +40,7 @@ public class BirdController {
     }
 
     @GetMapping("/like/{birdName}")
-    public ResponseEntity<Birds> searchLike(@PathVariable(name = "birdName")String birdName){
+    public ResponseEntity<List<Birds>> searchLike(@PathVariable(name = "birdName")String birdName){
         return ResponseEntity.ok(birdsService.getLikeBirds(birdName));
     }
 

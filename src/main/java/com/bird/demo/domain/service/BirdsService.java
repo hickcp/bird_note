@@ -25,7 +25,7 @@ public class BirdsService {
         return birdRepository.findByBirdName(birdName).get();
     }
 
-    public Birds getLikeBirds(String birdName){
-        return birdRepository.findByBirdNameLike(birdName).get();
+    public List<Birds> getLikeBirds(String birdName){
+        return birdRepository.findByBirdNameLike(birdName);
     }
 }
