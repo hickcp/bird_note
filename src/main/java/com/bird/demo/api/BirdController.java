@@ -35,7 +35,7 @@ public class BirdController {
         return ResponseEntity.status(HttpStatus.CREATED).body(b);
     }
     @GetMapping("/load/{birdName}")
-    public ResponseEntity<Birds> search(@PathVariable(name = "birdName")String birdName){
+    public ResponseEntity<Birds> search(@PathVariable(name = "birdName") String birdName){
         return ResponseEntity.ok(birdsService.getBirds(birdName));
     }
 

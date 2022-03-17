@@ -1,8 +1,10 @@
 package com.bird.demo.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Birds {
@@ -14,17 +16,10 @@ public class Birds {
     @Column(name = "BirdName", nullable = false)
     private String birdName;
 
-    @Column(name = "SeeDate", nullable = false)
-    private String seeDate;
+    @JsonIgnoreProperties("birds")
+    @OneToMany(mappedBy = "birds", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Note> notes = new ArrayList<>();
 
-    @Column(name = "SeeHour", nullable = false)
-    private String seeHour;
-
-    @Column(name = "Behavior", nullable = false)
-    private String behavior;
-
-    @Column(name = "Comments")
-    private String comments;
     public Long getId() {
         return id;
     }
@@ -41,35 +36,11 @@ public class Birds {
         this.birdName = birdName;
     }
 
-    public String getSeeDate() {
-        return seeDate;
+    public List<Note> getNotes() {
+        return notes;
     }
 
-    public void setSeeDate(String seeDate) {
-        this.seeDate = seeDate;
-    }
-
-    public String getSeeHour() {
-        return seeHour;
-    }
-
-    public void setSeeHour(String seeHour) {
-        this.seeHour = seeHour;
-    }
-
-    public String getBehavior() {
-        return behavior;
-    }
-
-    public void setBehavior(String behavior) {
-        this.behavior = behavior;
-    }
-
-    public String getComments() {
-        return comments;
-    }
-
-    public void setComments(String comments) {
-        this.comments = comments;
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
     }
 }

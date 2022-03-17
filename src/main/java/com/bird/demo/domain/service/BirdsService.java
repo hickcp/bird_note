@@ -17,6 +17,8 @@ public class BirdsService {
     }
 
     public Birds saveBirds(Birds b){
+        b.getNotes().forEach(n -> n.setBirds(b));
+
         return birdRepository.save(b);
     }
 
@@ -28,4 +30,6 @@ public class BirdsService {
     public List<Birds> getLikeBirds(String birdName){
         return birdRepository.findByBirdNameLike(birdName);
     }
+
+
 }
