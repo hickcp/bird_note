@@ -7,17 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Birds {
+public class Bird {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "BirdName", nullable = false)
-    private String birdName;
+    @Column(name = "name", nullable = false)
+    private String name;
 
-    @JsonIgnoreProperties("birds")
-    @OneToMany(mappedBy = "birds", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("bird")
+    @OneToMany(mappedBy = "bird", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Note> notes = new ArrayList<>();
 
     public Long getId() {
@@ -28,12 +28,12 @@ public class Birds {
         this.id = id;
     }
 
-    public String getBirdName() {
-        return birdName;
+    public String getName() {
+        return name;
     }
 
-    public void setBirdName(String birdName) {
-        this.birdName = birdName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Note> getNotes() {

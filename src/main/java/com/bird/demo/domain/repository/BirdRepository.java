@@ -1,22 +1,13 @@
 package com.bird.demo.domain.repository;
 
-import com.bird.demo.domain.model.Birds;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
-
-import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.bird.demo.domain.model.Bird;
+
 @Repository
-public interface BirdRepository extends JpaRepository<Birds, Long> {
-
-    Optional<Birds> findByBirdName(String birdName);
-
-
-
-    @Query("FROM Birds c WHERE c.birdName LIKE %?1%")
-    List<Birds> findByBirdNameLike(String birdName);
-
-
+public interface BirdRepository extends JpaRepository<Bird, Long> {
+	Optional<Bird> findByName(String name);
 }

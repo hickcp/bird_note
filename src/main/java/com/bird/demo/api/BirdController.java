@@ -1,47 +1,36 @@
 package com.bird.demo.api;
 
-import com.bird.demo.domain.model.Birds;
-import com.bird.demo.domain.service.BirdsService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-@Controller
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.bird.demo.domain.model.Bird;
+import com.bird.demo.domain.service.BirdService;
+
+@RestController
 @RequestMapping(path = "/bird")
 public class BirdController {
 
-    @Autowired
-    private BirdsService birdsService;
-    
-    @Autowired
-    private ApplicationEventPublisher publisher;
+	@Autowired
+	private BirdService birdService;
 
-    public BirdController(BirdsService birdsService, ApplicationEventPublisher publisher) {
-        this.birdsService = birdsService;
-        this.publisher = publisher;
-    }
+	@PostMapping("/write")
+	public ResponseEntity<Bird> save(@RequestBody Bird bird) {
+		Bird b = birdService.save(bird);
 
-    @PostMapping("/write")
-    public ResponseEntity<Birds> save(@Validated @RequestBody Birds birds, HttpServletResponse response){
+		return ResponseEntity.status(HttpStatus.CREATED).body(b);
+	}
 
-        Birds b = birdsService.saveBirds(birds);
-        return ResponseEntity.status(HttpStatus.CREATED).body(b);
-    }
-    @GetMapping("/load/{birdName}")
-    public ResponseEntity<Birds> search(@PathVariable(name = "birdName") String birdName){
-        return ResponseEntity.ok(birdsService.getBirds(birdName));
-    }
-
-    @GetMapping("/like/{birdName}")
-    public ResponseEntity<List<Birds>> searchLike(@PathVariable(name = "birdName")String birdName){
-        return ResponseEntity.ok(birdsService.getLikeBirds(birdName));
-    }
+	@GetMapping("/all")
+	public ResponseEntity<List<Bird>> all() {
+		return ResponseEntity.ok(birdService.all());
+	}
 
 }
