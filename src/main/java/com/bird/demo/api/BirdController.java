@@ -31,7 +31,6 @@ public class BirdController {
 
 	@GetMapping("/search/{birdName}")
 	public ResponseEntity<List<Bird>> search(@PathVariable String birdName) {
-
 		return ResponseEntity.ok(birdService.findByNameStartsWith(birdName));
 	}
 

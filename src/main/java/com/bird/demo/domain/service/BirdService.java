@@ -24,5 +24,9 @@ public class BirdService {
 	public List<Bird> findByNameStartsWith(String name) {
 		return birdRepository.findByNameStartsWithIgnoreCase(name);
 	}
+	
+	public List<Bird> findByName(String name) {
+		return birdRepository.findByNameIgnoreCase(name);
+	}
 
 }

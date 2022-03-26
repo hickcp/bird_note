@@ -19,6 +19,12 @@ public class Bird {
     @JsonIgnoreProperties("bird")
     @OneToMany(mappedBy = "bird", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Note> notes = new ArrayList<>();
+    
+    public Bird() {}
+    
+    public Bird(String name) {
+		this.name = name;
+	}
 
     public Long getId() {
         return id;
