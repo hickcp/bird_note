@@ -28,10 +28,12 @@ public class NoteController {
 	private NoteService noteService;
 
 	@PostMapping("/write")
-	public ResponseEntity<Note> save(@RequestBody Note newNote) {
-		String birdName = newNote.getBird().getName();
+	public ResponseEntity<Note> save(@RequestBody Note newNote) { //Salva e recebe um Note no body
+		String birdName = newNote.getBird().getName(); //pega o birdname pelo note
 
-		if (birdName.length() > 1 && newNote.getComments().length() > 1) {
+		if (birdName.length() > 1 && newNote.getComments().length() > 1) { // Se o nome e o comentário foi maior que 1 caractério o programa continua
+			//se não, ele retorna nulo.
+			//Isso é feito para evitar de cadastrar um bird e um note com atributos nulos
 			Bird bird = birdService.findByName(birdName).get(0);
 
 			newNote.setBird(bird);
@@ -48,6 +50,6 @@ public class NoteController {
 	@GetMapping("/all")
 	public ResponseEntity<List<Note>> all() {
 		return ResponseEntity.ok(noteService.all());		
-	}
+	} //Retorna os note junto com respectivo bird;
 
 }

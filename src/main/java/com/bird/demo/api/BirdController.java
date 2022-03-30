@@ -23,20 +23,20 @@ public class BirdController {
 	private BirdService birdService;
 
 	@PostMapping("/write")
-	public ResponseEntity<Bird> save(@RequestBody Bird bird) {
-		Bird b = birdService.save(bird);
+	public ResponseEntity<Bird> save(@RequestBody Bird bird) { //Faz o POST solicitando um corpo do tipo Bird
+		Bird b = birdService.save(bird); // pega o bird para salvar
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(b);
+		return ResponseEntity.status(HttpStatus.CREATED).body(b); //retonar o bird salvo
 	}
 
 	@GetMapping("/search/{birdName}")
-	public ResponseEntity<List<Bird>> search(@PathVariable String birdName) {
-		return ResponseEntity.ok(birdService.findByNameStartsWith(birdName));
+	public ResponseEntity<List<Bird>> search(@PathVariable String birdName) { // procura o Bird pelo nome com uma String
+		return ResponseEntity.ok(birdService.findByNameStartsWith(birdName)); // retorna o Bird que foi pesquisado
 	}
 
 	@GetMapping("/all")
 	public ResponseEntity<List<Bird>> all() {
 		return ResponseEntity.ok(birdService.all());
-	}
+	} //retornam todos os Bird registrados.
 
 }

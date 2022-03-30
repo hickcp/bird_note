@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface NoteRepository extends JpaRepository<Note, Long> {
-    List<Note> findAllByBird (Bird bird);
+    List<Note> findAllByBird (Bird bird); //Uma List tipo Note que é encontrada pelo tipo Bird.
 }
