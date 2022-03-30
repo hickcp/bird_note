@@ -50,6 +50,6 @@ public class NoteController {
 	@GetMapping("/all")
 	public ResponseEntity<List<Note>> all() {
 		return ResponseEntity.ok(noteService.all());		
-	} //Retorna os note junto com respectivo bird;
+	} //Retorna os note junto com respectivo bird
 
 }
