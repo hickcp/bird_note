@@ -1,4 +1,4 @@
-package com.bird.demo.domain.exceptions;
+package com.bird.demo.exceptions;
 
 public class TENomeNaoInformadoException extends Exception{
 	public TENomeNaoInformadoException() {

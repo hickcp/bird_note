@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bird.demo.domain.exceptions.TENomeNaoInformadoException;
 import com.bird.demo.domain.model.Bird;
 import com.bird.demo.domain.service.BirdService;
+import com.bird.demo.exceptions.TENomeNaoInformadoException;
 
 @RestController
 @RequestMapping(path = "/bird")
