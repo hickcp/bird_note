@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bird.demo.domain.model.Bird;
 import com.bird.demo.domain.service.BirdService;
+import com.bird.demo.exceptions.TENenhumBirdEncontradoException;
 import com.bird.demo.exceptions.TENomeNaoInformadoException;
 
 @RestController
@@ -32,7 +33,8 @@ public class BirdController {
 	}
 
 	@GetMapping("/search/{birdName}")
-	public ResponseEntity<List<Bird>> search(@PathVariable String birdName) { // procura o Bird pelo nome com uma String
+	public ResponseEntity<List<Bird>> search(@PathVariable String birdName) throws TENenhumBirdEncontradoException { // procura o Bird pelo nome com uma String
+		if(birdService.findByName(birdName).isEmpty()) throw new TENenhumBirdEncontradoException();
 		return ResponseEntity.ok(birdService.findByNameStartsWith(birdName)); // retorna o Bird que foi pesquisado
 	}
 
