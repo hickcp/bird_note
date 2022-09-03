@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bird.demo.domain.exceptions.TENomeNaoInformadoException;
 import com.bird.demo.domain.model.Bird;
 import com.bird.demo.domain.service.BirdService;
 
@@ -23,9 +24,10 @@ public class BirdController {
 	private BirdService birdService;
 
 	@PostMapping("/write")
-	public ResponseEntity<Bird> save(@RequestBody Bird bird) { //Faz o POST solicitando um corpo do tipo Bird
+	public ResponseEntity<Bird> save(@RequestBody Bird bird) throws TENomeNaoInformadoException { //Faz o POST solicitando um corpo do tipo Bird
+		
 		Bird b = birdService.save(bird); // pega o bird para salvar
-
+		if(ehBrancoNulo(b.getName())) throw new TENomeNaoInformadoException();
 		return ResponseEntity.status(HttpStatus.CREATED).body(b); //retonar o bird salvo
 	}
 
@@ -39,4 +41,7 @@ public class BirdController {
 		return ResponseEntity.ok(birdService.all());
 	} //retornam todos os Bird registrados.
 
+	private boolean ehBrancoNulo(String s) {
+		return "".equals(s) || s == null;
+	}
 }
